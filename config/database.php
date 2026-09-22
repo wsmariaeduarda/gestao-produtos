@@ -1,9 +1,9 @@
 <?php
 
-$host = "127.0.0.1";
+$host = "localhost";
 $dbname = "gestao_produtos";
-$user = "app_gestao";
-$senha = "senha123";
+$user = "root";
+$senha = "";
 
 try {
     $conexao = new PDO("mysql:host=$host", $user, $senha);
