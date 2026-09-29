@@ -1,0 +1,56 @@
+digraph DER {
+  graph [rankdir=LR, bgcolor="white", pad="0.3", nodesep="0.6", ranksep="1.0"];
+  node [shape=plain, fontname="Arial"];
+  edge [color="#64748b", penwidth=1.5, arrowsize=0.8, fontname="Arial"];
+
+  usuarios [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7">
+      <TR><TD BGCOLOR="#2563eb"><FONT COLOR="white"><B>USUARIOS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id INT AUTO_INCREMENT</TD></TR>
+      <TR><TD ALIGN="LEFT">nome VARCHAR(100) NOT NULL</TD></TR>
+      <TR><TD ALIGN="LEFT">email VARCHAR(100) UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">telefone VARCHAR(20)</TD></TR>
+      <TR><TD ALIGN="LEFT">senha VARCHAR(64) NOT NULL</TD></TR>
+    </TABLE>
+  >];
+  fornecedores [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7">
+      <TR><TD BGCOLOR="#0f766e"><FONT COLOR="white"><B>FORNECEDORES</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id INT AUTO_INCREMENT</TD></TR>
+      <TR><TD ALIGN="LEFT">nome VARCHAR(100) NOT NULL</TD></TR>
+      <TR><TD ALIGN="LEFT">endereco VARCHAR(200)</TD></TR>
+      <TR><TD ALIGN="LEFT">email VARCHAR(100)</TD></TR>
+      <TR><TD ALIGN="LEFT">telefone VARCHAR(20)</TD></TR>
+    </TABLE>
+  >];
+  produtos [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7">
+      <TR><TD BGCOLOR="#7c3aed"><FONT COLOR="white"><B>PRODUTOS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id INT AUTO_INCREMENT</TD></TR>
+      <TR><TD ALIGN="LEFT">nome VARCHAR(100) NOT NULL</TD></TR>
+      <TR><TD ALIGN="LEFT">FK fornecedor_id INT NOT NULL</TD></TR>
+      <TR><TD ALIGN="LEFT">preco DECIMAL(10,2) NOT NULL</TD></TR>
+      <TR><TD ALIGN="LEFT">descricao TEXT</TD></TR>
+      <TR><TD ALIGN="LEFT">img VARCHAR(255)</TD></TR>
+    </TABLE>
+  >];
+  cestas [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7">
+      <TR><TD BGCOLOR="#b45309"><FONT COLOR="white"><B>CESTAS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT">PK id INT AUTO_INCREMENT</TD></TR>
+      <TR><TD ALIGN="LEFT">FK usuario_id INT UNIQUE</TD></TR>
+    </TABLE>
+  >];
+  cesta_produtos [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7">
+      <TR><TD BGCOLOR="#be123c"><FONT COLOR="white"><B>CESTA_PRODUTOS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT">PK/FK cesta_id INT</TD></TR>
+      <TR><TD ALIGN="LEFT">PK/FK produto_id INT</TD></TR>
+    </TABLE>
+  >];
+
+  usuarios -> cestas [label="1 : 1"];
+  fornecedores -> produtos [label="1 : N"];
+  cestas -> cesta_produtos [label="1 : N"];
+  produtos -> cesta_produtos [label="1 : N"];
+}
