@@ -1,0 +1,9 @@
+# Arquivos locais e credenciais
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+# Configurações de IDE
+.vscode/
+.idea/
